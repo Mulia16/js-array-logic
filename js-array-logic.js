@@ -33,7 +33,7 @@ function reverse(arr) {
 
 /// 3
 function uniqueArray(array) {
-    uniqueArr = [];
+    let uniqueArr = [];
     for (let i=0; i < array.length; i++) {
         let isSame = false;
         for (let j=0; j < uniqueArr.length; j++) {
@@ -84,4 +84,51 @@ function jajanBoba(uangJajan) {
         }
     }
     console.log(`David pulang dengan sisa uang jajan ${tambahTitik(uangJajan)}.`);
+}
+
+/// 5 Bonus
+function searchSameArray(arr1, arr2) {
+    let sameArray = [];
+    for (let i=0; i < arr1.length; i++) {
+        let isSame = false;
+        for (let j=0; j < arr2.length; j++) {
+            if (arr1[i] === arr2[j]) {
+                isSame = true;
+            }
+        }
+        if (isSame) {
+            sameArray.push(arr1[i]);
+        }
+    }
+    return sameArray;
+}
+
+/// 6 Bonus
+function printBranch(branches) {
+    let month  = ['   ','jan', 'feb', 'mar', 'apr', 'mei', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+    let lineSeparated = " | ";
+    let arrBranches = [];
+    let counter1 = 0;
+    while (counter1 < branches.length) {
+        let counter2 = 0;
+        let arrBranch = []
+        while (counter2 < month.length) {
+            arrBranch.push(branches[counter1][0][counter2] - branches[counter1][1][counter2]);
+            counter2++;
+        }
+        arrBranch.unshift("br " + (counter1 + 1))
+        arrBranches.push(arrBranch);
+        counter1++;
+    }
+    function formatData(index) {
+        let result = "";
+        for (let i=0; i < arrBranches.length; i++) {
+            let data = Array.isArray(arrBranches[i][index]) ? arrBranches[i][index] : arrBranches[i][index].toString();
+            result += (data.length === 4 ? data : data + " ") + lineSeparated;
+        }
+        return result;
+    }
+    for (let i=0; i < month.length; i++) {
+        console.log(month[i] + lineSeparated + formatData(i));
+    }
 }
