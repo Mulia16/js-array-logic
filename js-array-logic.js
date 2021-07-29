@@ -50,6 +50,20 @@ function uniqueArray(array) {
 
 /// 4
 function jajanBoba(uangJajan) {
+    function tambahTitik(uang) { 
+        let hitunganTitik = 0;
+        let uangTanpaTitik = uang.toString();
+        let uangDenganTitik = "";
+        for (let i=uangTanpaTitik.length - 1; i >= 0; i--) {
+            uangDenganTitik = uangTanpaTitik[i] + uangDenganTitik
+            hitunganTitik++;
+            if (hitunganTitik === 3 && i !== 0) {
+                uangDenganTitik = "." + uangDenganTitik;
+                hitunganTitik = 0
+            }
+        }
+        return uangDenganTitik;
+    }
     const listBoba = [
         ['Xing Fu Tang', 38000], 
         ['OneZo', 53500],
@@ -58,16 +72,16 @@ function jajanBoba(uangJajan) {
         ['Kokumi', 42000],
         ['Bubble Station Milk', 13000]
     ];
-    console.log(`David mulai jajan dengan uang jajan ${uangJajan} rupiah.`);
+    console.log(`David mulai jajan dengan uang jajan ${tambahTitik(uangJajan)} rupiah.`);
     for (let i=0; i < listBoba.length; i++) {
         if (uangJajan - listBoba[i][1] >= 0) {
-            console.log(`Dengan uang ${uangJajan}, cukup untuk beli ${listBoba[i][0]},`);
-            console.log(`setelah beli ${listBoba[i][0]} uangnya berkurang ${listBoba[i][1]},`);
+            console.log(`Dengan uang ${tambahTitik(uangJajan)}, cukup untuk beli ${listBoba[i][0]},`);
+            console.log(`setelah beli ${listBoba[i][0]} uangnya berkurang ${tambahTitik(listBoba[i][1])},`);
             uangJajan -= listBoba[i][1];
-            console.log(`jadi uangnya sisa ${uangJajan}`);
+            console.log(`jadi uangnya sisa ${tambahTitik(uangJajan)}`);
         } else {
-            console.log(`Dengan uang ${uangJajan}, tidak cukup untuk beli ${listBoba[i][0]}.`);
+            console.log(`Dengan uang ${tambahTitik(uangJajan)}, tidak cukup untuk beli ${listBoba[i][0]}.`);
         }
     }
-    console.log(`David pulang dengan sisa uang jajan ${uangJajan}.`);
+    console.log(`David pulang dengan sisa uang jajan ${tambahTitik(uangJajan)}.`);
 }
